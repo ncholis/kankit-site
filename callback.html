@@ -1,0 +1,11 @@
+<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>KanKit: kembali ke panel</title>
+<style>body{font:16px/1.6 system-ui,sans-serif;max-width:680px;margin:40px auto;padding:0 18px;color:#14122B}a{color:#6C4BFF}</style></head><body>
+<h1>Mengembalikan ke panel...</h1>
+<p id="m">Kamu akan dialihkan ke panel KanKit di komputer ini. Halaman ini hanya meneruskan hasil login TikTok ke <code>localhost:4747</code>; tidak menyimpan apa pun.</p>
+<script>
+// Pengalih statis: TikTok menolak redirect http://localhost, jadi TikTok diarahkan ke halaman HTTPS ini,
+// lalu halaman ini meneruskan code dan state PERSIS ke panel lokal di komputer yang sama. Tujuan dikunci ke localhost.
+var q = location.search;
+if (/[?&](code|error)=/.test(q)) location.replace('http://localhost:4747/api/oauth/tiktok/callback' + q);
+else document.getElementById('m').textContent = 'Tidak ada hasil login untuk diteruskan.';
+</script></body></html>
